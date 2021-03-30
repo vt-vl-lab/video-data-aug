@@ -1,0 +1,57 @@
+#!/bin/bash -l
+
+cd ~/src/mmaction2
+source activate video-data-aug
+
+# TSN test with 8 gpus
+# pre-trained (provided by mmaction) weights
+# ./tools/dist_test.sh ./configs/recognition/tsn/tsn_r50_1x1x3_80e_ucf101_rgb.py ./checkpoints/tsn_r50_1x1x3_80e_ucf101_rgb_20200613-d6ad9c48.pth 8 --eval top_k_accuracy
+
+# trained by Jinwoo
+# ./tools/dist_test.sh ./configs/recognition/tsn/tsn_r50_1x1x3_80e_ucf101_rgb.py ./work_dirs/tsn_r50_1x1x3_80e_ucf101_split_1_rgb/latest.pth 8 --eval top_k_accuracy
+
+# ./tools/dist_test.sh ./configs/recognition/tsn/tsn_r50_1x1x3_80e_ucf101_rgb.py ./work_dirs/tsn_r50_1x1x3_80e_ucf101_split_1_rgb_2gpus/latest.pth 8 --eval top_k_accuracy
+
+# R(2+1)D test with 8 gpus
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_80e_ucf101_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_80e_ucf101_rgb/latest.pth 8 --eval top_k_accuracy
+
+
+# # conf mat visualization: Supervised baseline, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/r2plus1d_r34_video_8x8x1_900e_ucf101_rgb_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/epoch_900.pth 8 --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# # conf mat visualization: FixMatch with RandAug, UCF-101 20% labeled
+./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_fixmatch_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_fixmatch_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_fixmatch_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with TempHalf, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_thalf_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_thalf_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_thalf_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_thalf_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with TempRev, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_treverse_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_treverse_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_treverse_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_treverse_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with TempCutOut, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_tcutout_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_tcutout_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_tcutout_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_tcutout_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with SceneCutOut, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_scenecutout_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_scenecutout_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_scenecutout_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_scenecutout_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with ActorCutMix, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with TemporalAugAll, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_taugment_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_taugment_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_taugment_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_taugment_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with RandAug+TemporalAugAll, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_rand_temporal_augment_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_rand_t_augment_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_rand_temporal_augment_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_rand_temporal_augment_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with RandAug+ActorCutMix, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_randaug_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_randaug_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_randaug_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_actorcutmix_randaug_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+# conf mat visualization: FixMatch with RandAug+TemporalAugAll+ActorCutMix, UCF-101 20% labeled
+./tools/dist_test.sh ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_all_20percent_vidssl/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_all_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_all_20percent_vidssl/epoch_180.pth 8 --out ./work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_all_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+
+./tools/test.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/r2plus1d_r34_video_8x8x1_900e_ucf101_rgb_20percent_vidssl.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/epoch_900.pth 8 --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_900e_ucf101_rgb_20percent_vidssl/results.pkl --eval top_k_accuracy confusion_matrix 
+
+
+# ucf-101 gt_labels
+/home/jinchoi/src/video-data-aug/work_dirs/r2plus1d_r34_video_8x8x1_180e_ucf101_rgb_fixmatch_20percent_vidssl/gt_labels.npy

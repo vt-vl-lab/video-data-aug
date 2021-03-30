@@ -1,0 +1,47 @@
+#!/bin/bash -l
+cd ~/src/video-data-aug
+source activate mmaction_vid
+
+
+##############################
+### train 5 percent
+##############################
+# train
+./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_5_percent_rgb.py 8
+# test
+./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_5_percent_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_5_percent_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_5_percent_rgb/result.pkl
+
+##############################
+### train 10 percent
+##############################
+# train
+./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_10_percent_rgb.py 8
+# test
+./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_10_percent_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_10_percent_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_10_percent_rgb/result.pkl
+
+##############################
+### train 20 percent
+##############################
+# train
+./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_20_percent_rgb.py 8
+# test
+./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_20_percent_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_20_percent_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_20_percent_rgb/result.pkl
+
+##############################
+### train 50 percent
+##############################
+# train
+./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_50_percent_rgb.py 8
+# test
+./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_50_percent_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_50_percent_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_50_percent_rgb/result.pkl
+
+##############################
+### train 100 percent
+##############################
+# train
+./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_rgb.py 8
+# test
+./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics100_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_kinetics100_rgb/result.pkl
+
+# debugging
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_kinetics400_rgb.py 1

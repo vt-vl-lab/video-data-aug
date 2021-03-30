@@ -1,0 +1,7 @@
+matplotlib
+numpy
+opencv-contrib-python
+Pillow
+pandas
+seaborn
+matplotlib

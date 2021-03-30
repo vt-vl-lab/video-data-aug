@@ -1,0 +1,164 @@
+#!/bin/bash -l
+cd ~/src/video-data-aug
+source activate mmaction
+
+##### Fully supervised upper bound #####
+# ##############################
+# ### train 40 percent
+# ##############################
+# # train
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_750e_hmdb51_rgb_40percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_750e_hmdb51_rgb_40percent_vidssl.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_750e_hmdb51_rgb_40percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_750e_hmdb51_rgb_40percent_vidssl/result.pkl
+
+# ##############################
+# ### train 50 percent
+# ##############################
+# # train
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_50percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_50percent_vidssl.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_600e_hmdb51_rgb_50percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_600e_hmdb51_rgb_50percent_vidssl/result.pkl
+
+# ##############################
+# ### train 60 percent
+# ##############################
+# # train
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_500e_hmdb51_rgb_60percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_500e_hmdb51_rgb_60percent_vidssl.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_500e_hmdb51_rgb_60percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_500e_hmdb51_rgb_60percent_vidssl/result.pkl
+
+
+##############################
+### train 100 percent
+##############################
+# # train
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_hmdb51_rgb.py 8
+# # test
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_180e_hmdb51_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_hmdb51_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_180e_hmdb51_rgb/result.pkl
+
+# # train
+# ./tools/dist_train.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_300e_hmdb51_rgb.py 8
+# # test
+# ./tools/dist_test.sh ./configs/recognition/r2plus1d/r2plus1d_r34_video_8x8x1_300e_hmdb51_rgb.py ./work_dirs/r2plus1d_r34_video_3d_8x8x1_300e_hmdb51_rgb/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_3d_8x8x1_300e_hmdb51_rgb/result.pkl
+##### Fully supervised upper bound #####
+
+
+
+##### Fixmatch with RandAug+TempAugAll+ACM_v2 #####
+##############################
+### train 50 percent
+##############################
+# train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/result.pkl
+<<<<<<< HEAD
+=======
+
+# ##############################
+# ### train 50 percent
+# ##############################
+# # train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/result.pkl
+
+# ##############################
+# ### train 60 percent
+# ##############################
+# # train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/result.pkl
+>>>>>>> 08fc52e27cf5d6c23ad0b7305ee5033fcbd29f45
+
+
+
+##### Fixmatch with RandAug+TempAugAll+ACM_v2 R(2+1)D-18 #####
+##############################
+### train 40 percent
+##############################
+# train
+<<<<<<< HEAD
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/result.pkl
+=======
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/result.pkl
+
+# ##############################
+# ### train 40 percent
+# ##############################
+# train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/result.pkl
+
+# ##############################
+# ### train 60 percent
+# ##############################
+# # train
+./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py 8
+# test
+./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/result.pkl
+
+
+>>>>>>> 08fc52e27cf5d6c23ad0b7305ee5033fcbd29f45
+
+##############################
+### test 40 percent
+##############################
+<<<<<<< HEAD
+# train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/result.pkl
+
+
+
+##### Fixmatch with RandAug+TempAugAll+ACM_v2 R(2+1)D-18 #####
+##############################
+### train 50 percent
+##############################
+# train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/result.pkl
+
+# ##############################
+# ### train 40 percent
+# ##############################
+# train
+./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py 8
+# test
+./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/result.pkl
+
+# ##############################
+# ### train 60 percent
+# ##############################
+# # train
+# ./tools/dist_train_semi.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py 8
+# # test
+# ./tools/dist_test.sh ./configs/semi/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/latest.pth 8 --eval top_k_accuracy --out ./work_dirs/r2plus1d_r18_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/result.pkl
+
+
+
+##############################
+### test 40 percent
+##############################
+=======
+>>>>>>> 08fc52e27cf5d6c23ad0b7305ee5033fcbd29f45
+# test
+# python ./tools/test.py ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/epoch_300.pth --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_40percent_vidssl/result_e300.pkl
+
+# ##############################
+# ### test 50 percent
+# ##############################
+# python ./tools/test.py  ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/epoch_300.pth --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_50percent_vidssl/result_e300.pkl
+
+# ##############################
+# ### test 60 percent
+# ##############################
+# python ./tools/test.py ./configs/semi/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl.py ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/epoch_300.pth --eval top_k_accuracy --out ./work_dirs/r2plus1d_r34_video_8x8x1_600e_hmdb51_rgb_all_60percent_vidssl/result_e300.pkl
