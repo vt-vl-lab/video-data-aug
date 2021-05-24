@@ -79,9 +79,14 @@ class UnlabeledRawframeDataset(RawframeDataset):
     def load_imagenet_scores(self, cls_file):
         """Load ImageNet pre-trained model scores and merge it with self.video_infos"""
         cls = np.load(cls_file, allow_pickle=True).item()
-        for idx in range(len(self.video_infos)):
-            seq_name = self.video_infos[idx]['frame_dir'].split('/')[-1]
-            self.video_infos[idx]['imagenet_scores'] = cls[seq_name]
+        if 'kinetics' in cls_file:
+            for idx in range(len(self.video_infos)):
+                seq_name = self.video_infos[idx]['frame_dir'].split('/')[-1][:11]
+                self.video_infos[idx]['imagenet_scores'] = cls[seq_name]
+        else:
+            for idx in range(len(self.video_infos)):
+                seq_name = self.video_infos[idx]['frame_dir'].split('/')[-1]
+                self.video_infos[idx]['imagenet_scores'] = cls[seq_name]
 
     def prepare_train_frames(self, idx):
         """Prepare the frames for training given the index."""
@@ -99,7 +104,12 @@ class UnlabeledRawframeDataset(RawframeDataset):
         if 'imagenet_scores' in results_strong:
             # Randomly sample 1 frame for distillation
             fidx = np.random.permutation(results_strong['frame_inds'])[0]
-            prob = torch.from_numpy(results_strong['imagenet_scores'][fidx]['prob'])
+            # NOTE: For Kinetics-100, we only have prob for some of the frames only
+            try:
+                prob = torch.from_numpy(results_strong['imagenet_scores'][fidx]['prob'])
+            except:
+                fidx = fidx//4*4+1
+                prob = torch.from_numpy(results_strong['imagenet_scores'][fidx]['prob'])
             output['imagenet_prob'] = prob
             del results_strong['imagenet_scores']
 
