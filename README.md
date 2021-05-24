@@ -17,7 +17,7 @@ First, please download human detection results and put them in the corresponding
 
 Second, please refer to [data_preparation.md](docs/data_preparation.md) to prepare raw frames of UCF-101 and HMDB-51. (Instructions of extracting frames from Kinetics-100 will be available soon.)
 
-(Optional) You can download the pre-extracted ImageNet scores: [UCF-101](https://filebox.ece.vt.edu/~ylzou/video_data_aug/ucf101/resnet18_prtrnd_preds.npy), [HMDB-51](https://filebox.ece.vt.edu/~ylzou/video_data_aug/hmdb51/resnet18_prtrnd_preds.npy).
+(Optional) You can download the pre-extracted ImageNet scores: [UCF-101](https://filebox.ece.vt.edu/~ylzou/video_data_aug/ucf101/resnet18_prtrnd_preds.npy), [HMDB-51](https://filebox.ece.vt.edu/~ylzou/video_data_aug/hmdb51/resnet18_prtrnd_preds.npy), [Kinetics-100](https://filebox.ece.vt.edu/~ylzou/video_data_aug/kinetics400/resnet18_prtrnd_preds_kinetics100_train_subsample_4.npy).
 
 
 ## Training
