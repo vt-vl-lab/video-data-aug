@@ -93,6 +93,9 @@ def build_dataloader(dataset,
         worker_init_fn, num_workers=num_workers, rank=rank,
         seed=seed) if seed is not None else None
 
+    persistent_workers = True if num_workers != 0 else False
+    # recommend to use this flag to keep workers when constructing the iterator.
+    #However, this flag is only available when the version of pytorch is larger than 1.9.
     data_loader = DataLoader(
         dataset,
         batch_size=batch_size,
@@ -103,6 +106,7 @@ def build_dataloader(dataset,
         shuffle=shuffle,
         worker_init_fn=init_fn,
         drop_last=drop_last,
+        persistent_workers=persistent_workers
         **kwargs)
 
     return data_loader
