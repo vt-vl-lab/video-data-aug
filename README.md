@@ -10,6 +10,8 @@ We use PyTorch-1.6.0 with CUDA-10.2 and Torchvision-0.7.0.
 
 Please refer to [install.md](docs/install.md) for installation.
 
+**NOTE:** If you are using PyTorch-1.9.0 or later version, consider switching to the [pytorch-1.9 branch](https://github.com/vt-vl-lab/video-data-aug/tree/pytorch-1.9) to speed up data loading.
+
 
 ## Data Preparation
 
