@@ -18,6 +18,11 @@ from mmaction.utils import collect_env, get_root_logger
 # Custom imports
 from mmaction.apis import train_model_semi
 
+#Set the number of thread as 0, when reading images with large size, e.g. Kinetics with short side of 320,
+#This strategy is helpful when cpu is busy. (3X faster)
+import cv2
+cv2.setNumberThreads(0)
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a recognizer')
